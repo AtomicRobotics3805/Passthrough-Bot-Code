@@ -15,5 +15,9 @@ object GlobalVars {
     @JvmField
     var SHOOTING = false
 
-    val SHOOT_1_BALL_DELAY = 1.0
+    @JvmField
+    var SHOOT_1_BALL_DELAY = 1.0
+
+    @JvmField
+    var SHOOT_3_BALL_DELAY = 1.0
 }
