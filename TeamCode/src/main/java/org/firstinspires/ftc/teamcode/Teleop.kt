@@ -15,6 +15,7 @@ import dev.nextftc.control.feedback.AngularFeedback
 import dev.nextftc.control.feedback.FeedbackType
 import dev.nextftc.control.feedback.PIDCoefficients
 import dev.nextftc.control.feedback.PIDElement
+import dev.nextftc.core.commands.groups.SequentialGroup
 import dev.nextftc.core.components.BindingsComponent
 import dev.nextftc.core.components.SubsystemComponent
 import dev.nextftc.core.units.deg
@@ -136,10 +137,17 @@ class Teleop : NextFTCOpMode() {
 
         Gamepads.gamepad1.leftTrigger.asButton { it >= 0.5 }.whenBecomesTrue { Intake.reverse() }.whenBecomesFalse { Intake.slowIn() }
 
+        Gamepads.gamepad1.rightBumper.whenBecomesTrue { Shooter.start() } whenBecomesFalse { Shooter.stop }
+
         Gamepads.gamepad1.leftBumper.whenBecomesTrue { MechanismRoutines.BeginShoot() }.whenBecomesFalse { MechanismRoutines.EndShoot() }
 
-
-
+        Gamepads.gamepad1.x.whenBecomesTrue {
+            autoAimPID.usePID = true
+            MechanismRoutines.BeginShoot()
+        } whenBecomesFalse {
+            autoAimPID.usePID = false
+            MechanismRoutines.EndShoot()
+        }
     }
 
 

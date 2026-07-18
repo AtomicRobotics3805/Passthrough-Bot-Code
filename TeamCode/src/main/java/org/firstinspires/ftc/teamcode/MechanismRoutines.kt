@@ -9,7 +9,6 @@ object MechanismRoutines {
 
 
     val Shoot3Routine = SequentialGroup(
-        Shooter.start,
         Gate.open,
         Delay(0.2),
         Intake.start,
@@ -20,7 +19,6 @@ object MechanismRoutines {
     )
 
     val Shoot1Routine = SequentialGroup(
-        Shooter.start,
         Gate.open,
         Delay(0.2),
         Intake.start,
@@ -31,7 +29,6 @@ object MechanismRoutines {
     )
 
     val BeginShoot = SequentialGroup(
-        Shooter.start,
         Gate.open,
         Delay(0.2),
         Intake.start
